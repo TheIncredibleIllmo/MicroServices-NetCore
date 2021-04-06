@@ -20,6 +20,7 @@ namespace ServicesStore.Api.BooksService.Tests
 
         private IEnumerable<LibraryMaterial> GetLibraryMaterials()
         {
+            //configures genfu to fill with fake data
             A.Configure<LibraryMaterial>()
                 .Fill(x => x.Title).AsArticleTitle()
                 .Fill(x => x.LibraryMaterialId, () => Guid.NewGuid());
