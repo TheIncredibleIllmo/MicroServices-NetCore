@@ -97,7 +97,7 @@ namespace ServicesStore.Api.BooksService.Tests
         [Fact]
         public async Task CreateBook()
         {
-            System.Diagnostics.Debugger.Launch();
+            // when Debugging is required, System.Diagnostics.Debugger.Launch();
 
             var options = new DbContextOptionsBuilder<LibraryMaterialContext>()
                 .UseInMemoryDatabase(databaseName: "BookStore")
