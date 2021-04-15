@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  servicesstore.api.author:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "6104:80"
+
+  servicesstore.api.book:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "6105:80"
+
+
+  servicesstore.api.cartservice:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - Services__Books=http://servicesstore.api.book
+    ports:
+      - "6106:80"
+
+
+  servicesstore.api.gateway:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on: 
+      - servicesstore.api.book
+    ports:
+      - "6107:80"
+

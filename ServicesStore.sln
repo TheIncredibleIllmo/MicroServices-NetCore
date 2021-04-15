@@ -9,7 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServicesStore.Api.Book", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServicesStore.Api.CartService", "ServicesStore.Api.CartService\ServicesStore.Api.CartService.csproj", "{0E4C2718-D3D4-469D-BAF4-7705A105B20B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicesStore.Api.BooksService.Tests", "ServicesStore.Api.BooksService.Tests\ServicesStore.Api.BooksService.Tests.csproj", "{1D462A9F-C25A-4C52-AC3D-DB43C2179D5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServicesStore.Api.BooksService.Tests", "ServicesStore.Api.BooksService.Tests\ServicesStore.Api.BooksService.Tests.csproj", "{1D462A9F-C25A-4C52-AC3D-DB43C2179D5C}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{40AD35A8-7D89-45D2-873B-2F18EE97117B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicesStore.Api.Gateway", "ServicesStore.Api.Gateway\ServicesStore.Api.Gateway.csproj", "{77B95102-D593-4756-BD73-A84968EDEAB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{1D462A9F-C25A-4C52-AC3D-DB43C2179D5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D462A9F-C25A-4C52-AC3D-DB43C2179D5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D462A9F-C25A-4C52-AC3D-DB43C2179D5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40AD35A8-7D89-45D2-873B-2F18EE97117B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40AD35A8-7D89-45D2-873B-2F18EE97117B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40AD35A8-7D89-45D2-873B-2F18EE97117B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40AD35A8-7D89-45D2-873B-2F18EE97117B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77B95102-D593-4756-BD73-A84968EDEAB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77B95102-D593-4756-BD73-A84968EDEAB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77B95102-D593-4756-BD73-A84968EDEAB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77B95102-D593-4756-BD73-A84968EDEAB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

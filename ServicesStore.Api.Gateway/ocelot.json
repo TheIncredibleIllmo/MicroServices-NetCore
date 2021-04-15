@@ -1,0 +1,97 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/book",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "ServicesStore.Api.Book",
+          "Port": "80"
+        }
+      ],
+
+      "UpstreamPathTemplate": "/api/books",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
+      "Key": "AllBooks"
+    },
+    {
+      "DownstreamPathTemplate": "/api/book/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "ServicesStore.Api.Book",
+          "Port": "80"
+        }
+      ],
+
+      "UpstreamPathTemplate": "/api/books/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ],
+      "DelegatingHandlers": [
+        "BooksHandler"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/bookauthor",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "ServicesStore.Api.Author",
+          "Port": "80"
+        }
+      ],
+
+      "UpstreamPathTemplate": "/api/authors",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
+      "Key": "AllAuthors"
+    },
+    {
+      "DownstreamPathTemplate": "/api/bookauthor/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "ServicesStore.Api.Author",
+          "Port": "80"
+        }
+      ],
+
+      "UpstreamPathTemplate": "/api/authors/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/cart",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "ServicesStore.Api.CartService",
+          "Port": "80"
+        }
+      ],
+
+      "UpstreamPathTemplate": "/api/cart",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/cart/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "ServicesStore.Api.CartService",
+          "Port": "80"
+        }
+      ],
+
+      "UpstreamPathTemplate": "/api/cart/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    }
+  ],
+  "Aggregates": [
+    {
+      "RouteKeys": [
+        "AllBooks",
+        "AllAuthors"
+      ],
+      "UpstreamPathTemplate": "/api/booksauthors",
+    }
+  ]
+
+}
