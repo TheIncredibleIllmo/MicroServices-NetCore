@@ -5,7 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using ServicesStore.Api.Gateway.Interfaces;
 using ServicesStore.Api.Gateway.MessageHandler;
+using ServicesStore.Api.Gateway.Services;
 
 namespace ServicesStore.Api.Gateway
 {
@@ -21,6 +23,11 @@ namespace ServicesStore.Api.Gateway
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IAuthorService, AuthorService>();
+            services.AddHttpClient("AuthorService", config=>
+            {
+                config.BaseAddress = new System.Uri(Configuration["Services:Author"]);
+            });
             services.AddOcelot().AddDelegatingHandler<BooksHandler>();
         }
 
