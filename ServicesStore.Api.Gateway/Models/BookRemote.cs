@@ -14,5 +14,7 @@ namespace ServicesStore.Api.Gateway.Models
         public DateTime? PublishDate { get; set; }
 
         public Guid? BookAuthorGuid { get; set; }
+
+        public AuthorRemote Author { get; set; }
     }
 }
