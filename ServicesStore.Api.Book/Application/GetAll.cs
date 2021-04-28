@@ -22,7 +22,7 @@ namespace ServicesStore.Api.Book.Application
 
         public class Handler : BaseHandler,IRequestHandler<Execute, List<LibraryMaterialDto>>
         {
-            public Handler(LibraryMaterialContext context, IMapper mapper) : base(context, mapper)
+            public Handler(LibraryMaterialContext context, IMapper mapper) : base(context, mapper, null)
             {
             }
 

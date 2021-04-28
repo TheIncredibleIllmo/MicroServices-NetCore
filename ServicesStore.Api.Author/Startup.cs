@@ -8,7 +8,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ServicesStore.Api.Author.Application;
+using ServicesStore.Api.Author.Handlers;
 using ServicesStore.Api.Author.Persistence;
+using ServiceStore.RabbitMQ.Bus.Queues;
+using ServiceStore.RabbitMQ.Bus.RabbitBus;
 
 namespace ServicesStore.Api.Author
 {
@@ -24,6 +27,9 @@ namespace ServicesStore.Api.Author
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IRabbitEventBus, RabbitEventBus>();
+            services.AddTransient<IEventHandler<EmailEventQueue>, EmailEventHandler>();
+
             services
                 .AddControllers()
                 //body validation
@@ -57,6 +63,10 @@ namespace ServicesStore.Api.Author
             {
                 endpoints.MapControllers();
             });
+
+            //Subscribe to the Rabbit eventBus
+            var eventBus = app.ApplicationServices.GetRequiredService<IRabbitEventBus>();
+            eventBus.Subscribe<EmailEventQueue, EmailEventHandler>();
         }
     }
 }

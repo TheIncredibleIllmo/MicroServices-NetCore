@@ -4,6 +4,8 @@ using MediatR;
 using ServicesStore.Api.Book.Common;
 using ServicesStore.Api.Book.Models;
 using ServicesStore.Api.BookService.Persistence;
+using ServiceStore.RabbitMQ.Bus.Queues;
+using ServiceStore.RabbitMQ.Bus.RabbitBus;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,9 +33,9 @@ namespace ServicesStore.Api.Book.Application
             }
         }
 
-        public class Handler : BaseHandler,IRequestHandler<Execute>
+        public class Handler : BaseHandler, IRequestHandler<Execute>
         {
-            public Handler(LibraryMaterialContext context) : base(context,null)
+            public Handler(LibraryMaterialContext context, IRabbitEventBus eventBus) : base(context, null, eventBus)
             {
 
             }
@@ -54,7 +56,12 @@ namespace ServicesStore.Api.Book.Application
                 }
 
                 var transactions = await _context.SaveChangesAsync();
-                if (transactions > 0) return Unit.Value;
+                if (transactions > 0)
+                {
+                    _eventBus.Publish(new EmailEventQueue("eduardomedm@gmail.com", request.Title, "Example..."));
+                    return Unit.Value;
+                }
+
 
                 throw new Exception("Error while saving Book.");
 

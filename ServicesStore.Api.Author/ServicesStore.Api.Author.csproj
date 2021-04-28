@@ -23,5 +23,9 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ServiceStore.RabbitMQ.Bus\ServiceStore.RabbitMQ.Bus.csproj" />
+  </ItemGroup>
+
 
 </Project>
