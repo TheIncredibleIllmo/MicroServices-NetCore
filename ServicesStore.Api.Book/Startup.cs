@@ -31,7 +31,14 @@ namespace ServicesStore.Api.Book
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IRabbitEventBus, RabbitEventBus>();
+            //services.AddTransient<IRabbitEventBus, RabbitEventBus>();
+
+            services.AddSingleton<IRabbitEventBus, RabbitEventBus>(sp =>
+            {
+                var scopeFactory = sp.GetRequiredService<IServiceScopeFactory>();
+                var mediatorService = sp.GetService<IMediator>();
+                return new RabbitEventBus(mediatorService, scopeFactory);
+            });
 
             services
                 .AddControllers()

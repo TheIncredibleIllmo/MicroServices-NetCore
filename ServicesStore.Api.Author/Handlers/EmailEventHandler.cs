@@ -1,4 +1,5 @@
-﻿using ServiceStore.RabbitMQ.Bus.Queues;
+﻿using Microsoft.Extensions.Logging;
+using ServiceStore.RabbitMQ.Bus.Queues;
 using ServiceStore.RabbitMQ.Bus.RabbitBus;
 using System;
 using System.Collections.Generic;
@@ -9,14 +10,16 @@ namespace ServicesStore.Api.Author.Handlers
 {
     public class EmailEventHandler : IEventHandler<EmailEventQueue>
     {
-        public EmailEventHandler()
-        {
+        private readonly ILogger<EmailEventHandler> _logger;
 
+        public EmailEventHandler(ILogger<EmailEventHandler> logger)
+        {
+            _logger = logger;
         }
 
-        public Task Handle(EmailEventQueue @event)
+        public async Task Handle(EmailEventQueue @event)
         {
-            return Task.CompletedTask;
+            _logger.LogInformation(@event.Addressee);
         }
     }
 }
