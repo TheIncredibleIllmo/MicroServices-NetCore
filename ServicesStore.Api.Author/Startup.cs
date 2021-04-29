@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using ServicesStore.Api.Author.Application;
 using ServicesStore.Api.Author.Handlers;
 using ServicesStore.Api.Author.Persistence;
+using ServicesStore.Messaging.Email.Sendgrid.Interfaces;
 using ServiceStore.RabbitMQ.Bus.Queues;
 using ServiceStore.RabbitMQ.Bus.RabbitBus;
 
@@ -33,6 +34,8 @@ namespace ServicesStore.Api.Author
                 var mediatorService = sp.GetService<IMediator>();
                 return new RabbitEventBus(mediatorService, scopeFactory);
             });
+
+            services.AddSingleton<ISendgridSend,SendgridSend>();
 
             services.AddTransient<EmailEventHandler>();
 

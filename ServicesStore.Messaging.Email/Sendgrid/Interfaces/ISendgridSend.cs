@@ -20,7 +20,7 @@ namespace ServicesStore.Messaging.Email.Sendgrid.Interfaces
         {
             try
             {
-                var sendgridClient = new SendGridClient(data.SendgridApiKey);
+                var sendgridClient = new SendGridClient(data.SendgridApiSecret);
 
                 var addressee = new EmailAddress(data.AddresseeEmail, data.AddresseeName);
 

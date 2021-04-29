@@ -6,7 +6,7 @@ namespace ServicesStore.Messaging.Email.Sendgrid.Models
 {
     public class SendgridData
     {
-        public string SendgridApiKey { get; set; }
+        public string SendgridApiSecret { get; set; }
 
         public string AddresseeEmail { get; set; }
 
